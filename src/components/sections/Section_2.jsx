@@ -25,7 +25,7 @@ function Section_2() {
         </div>
       </div>
       {/* product listing */}
-      <div className="flex flex-row mt-5 flex-wrap sm:justify-center">
+      <div className="flex flex-row mt-5 flex-wrap sm:justify-center lg:justify-between">
         {products && products.map((item) => <Card item={item} />)}
       </div>
     </div>
