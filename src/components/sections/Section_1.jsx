@@ -4,7 +4,7 @@ function Section_1() {
   return (
     <div className="flex flex-row justify-center">
       <div className="my-[-100px] basis-80">
-        <img src={image} alt={Section_1} width={"100%"} />
+        <img src={image} alt={image} width={"100%"} />
       </div>
       <div className="basis mt-[100px] px-14">
         <p className="text-[#10A2F3] text-6xl font-normal">DE CHANEL SPECIALS</p>
