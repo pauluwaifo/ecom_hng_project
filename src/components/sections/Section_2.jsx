@@ -25,7 +25,7 @@ function Section_2() {
       {/* heading */}
       <div className="flex flex-row">
         <div className="basis-1/2">
-          <p className="text-4xl font-semibold">Top products</p>
+          <p className="text-4xl font-semibold">Top </p>
         </div>
         <div className="basis-1/2 text-[1.2rem] flex justify-end font-semibold">
           <Link className="mx-2" to={"/"}>

@@ -3,7 +3,7 @@ import { IoStarHalf } from "react-icons/io5";
 
 function Card({ item }) {
   return (
-    <div className="basis-4/12 border-2 mx-1 p-2" key={item.id}>
+    <div className="basis-1/2 border-4 mx-1 p-2" key={item.id}>
       <div className="w-full h-80">
           <img  src={item.image[0]} alt={item.name} />
       </div>
