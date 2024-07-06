@@ -16,7 +16,7 @@ export const products = [
   },
   {
     id: "GGOEAFKA087499",
-    name: "fragrance enhancer, DS & DURGA",
+    name: "fragrance enhancer,..",
     brand: "channel",
     description:
       "Show your Android pride by placing these 8 fun stickers on your technology products or accessories!",
