@@ -2,10 +2,19 @@ import { IoStar } from "react-icons/io5";
 import { IoStarHalf } from "react-icons/io5";
 
 function Card({ item }) {
+  const addToCart = (product) => {
+    const existingCart = localStorage.getItem("cart");
+    const cart = existingCart ? JSON.parse(existingCart) : [];
+    cart.push(product);
+    localStorage.setItem("cart", JSON.stringify(cart));
+  };
   return (
-    <div className="basis-1/2 border-4 mx-1 p-2" key={item.id}>
-      <div className="w-full h-80">
-          <img  src={item.image[0]} alt={item.name} />
+    <div
+      className="sm:basis-[45%] lg:basis-[32.5%] border-2 m-1 p-2"
+      key={item.id}
+    >
+      <div className="w-full lg:h-80 sm:h-28 overflow-hidden">
+        <img width={"100%"} src={item.image[0]} alt={item.name} />
       </div>
 
       <div className="flex items-center">
@@ -16,9 +25,14 @@ function Card({ item }) {
         <IoStarHalf className="text-[#f7cb38] " />
       </div>
       <p>{item.name}</p>
-      <div className="flex flex-row justify-between mt-2 items-center">
-        <p className="font-bold text-xl ">${item.price.toFixed(2)}</p>
-        <button className="text-sm px-2 py-1 h-full bg-[#d9d9d9] font-bold">Add to bag</button>
+      <div className="flex sm:flex-col lg:flex-row justify-between mt-2 items-center">
+        <p className="font-bold lg:text-xl ">${item.price.toFixed(2)}</p>
+        <button
+          onClick={() => addToCart(item)}
+          className="text-sm px-2 py-1 h-full bg-[#d9d9d9] font-bold"
+        >
+          Add to bag
+        </button>
       </div>
     </div>
   );

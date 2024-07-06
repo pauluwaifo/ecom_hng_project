@@ -8,7 +8,7 @@ function Home() {
       {/* banner */}
       <Bannar />
       {/* sections */}
-      <div className="px-24">
+      <div className="sm:p-2 lg:px-24">
         <Section_1 />
         <Section_2 />
       </div>

@@ -5,13 +5,13 @@ import { Link } from "react-router-dom";
 
 function TopBar() {
   return (
-    <div className="w-full px-28 justify-between bg-white flex flex-row items-center text-sm min-h-14">
+    <div className="w-full sm:p-0 sm:justify-center px-28 justify-between bg-white flex flex-row items-center text-sm min-h-14">
       {/* text */}
-      <p>Free shipping on all order within Lagos</p>
+      <p className="sm:hidden">Free shipping on all order within Lagos</p>
       {/* logo */}
       <p className="text-3xl font-extrabold">MIKA'S EMPIRE</p>
       {/* social links */}
-      <section>
+      <section className="sm:hidden">
         <FaFacebookF className="inline-block mx-1 text-gray-600" />
         <FaTwitter className="inline-block mx-1 text-gray-600" />
         <FaInstagram className="inline-block mx-1 text-gray-600" />

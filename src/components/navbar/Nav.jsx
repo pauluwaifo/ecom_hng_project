@@ -7,10 +7,10 @@ import { FaRegHeart, FaShoppingBag } from "react-icons/fa";
 function Nav() {
   return (
     <div
-      className={`${styles.nav_bg} w-full px-28 justify-around text-white flex flex-row items-center text-sm min-h-14`}
+      className={`${styles.nav_bg} w-full sm:p-2 lg:px-28 lg:justify-around text-white flex flex-row items-center text-sm min-h-14`}
     >
       {/* links/navigation */}
-      <div className="flex basis-3/5 justify-between items-center ">
+      <div className=" basis-3/5 justify-between items-center sm:hidden lg:flex">
         <Link className="flex items-center" to={"/about us"}>
           ABOUT US <FaPlus className="text-white inline-block mx-1" />
         </Link>
@@ -26,10 +26,10 @@ function Nav() {
         </Link>
       </div>
 
-      <div className="basis-2/5 justify-between items-center flex flex-row">
+      <div className="lg:basis-2/5 sm:basis-full justify-between items-center flex flex-row">
         {/* search  */}
         <form
-          className="text-white mx-20 flex items-center border-b-2 p-1"
+          className="text-white sm:mx-0 lg:mx-20 flex items-center border-b-2 p-1"
           onSubmit={() => something}
         >
           <IoSearch className="text-lg mx-1" />
