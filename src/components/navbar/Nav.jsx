@@ -7,11 +7,10 @@ import { useEffect, useState } from "react";
 
 function Nav() {
   const [cart, setCart] = useState();
-  const [scaleNo, setScaleNo] = useState(1)
+  const [scaleNo, setScaleNo] = useState(1);
   const totalQty =
-  cart && cart.reduce((accumulator, item) => accumulator + item.qty, 0);
+    cart && cart.reduce((accumulator, item) => accumulator + item.qty, 0);
 
- 
   useEffect(() => {
     const existingCart = localStorage.getItem("cart");
     if (existingCart) {
@@ -69,14 +68,16 @@ function Nav() {
           <Link className="mx-2 hover:scale-110" to={"/"}>
             <FaRegHeart />
           </Link>
-          <Link className="relative hover:scale-110" to={"/"}>
+          <Link className="relative flex flex-row items-center hover:scale-110" to={"/"}>
             <div>
               <FaShoppingBag />
             </div>
-            <div style={{ transform: `scale(${scaleNo})`}} className="absolute bottom-1 left-4 bg-[#1E1E1E] text-sm px-1 rounded-full">
-              {totalQty ? totalQty : "0"}
-            </div>
-            
+              <div
+                style={{ transform: `scale(${scaleNo})` }}
+                className="text-sm px-1 mx-1"
+              >
+                {totalQty ? totalQty : "0"}
+              </div>
           </Link>
         </section>
       </div>
