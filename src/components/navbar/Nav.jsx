@@ -63,8 +63,8 @@ function Nav() {
           <Link className="mx-2 hover:scale-110" to={"/"}>
             <FaRegHeart />
           </Link>
-          <Link className=" hover:scale-110" to={"/"}>
-            <div className="relative border">
+          <Link className="relative hover:scale-110" to={"/"}>
+            <div className="border">
               <FaShoppingBag />
               <div className="absolute top-1 bg-[#1E1E1E] text-sm px-2 rounded-full">{totalQty ? totalQty : "0"}</div>
             </div>
