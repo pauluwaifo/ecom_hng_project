@@ -7,22 +7,23 @@ import { useEffect, useState } from "react";
 
 function Nav() {
   const [cart, setCart] = useState();
-
+  const totalQty =
+  cart && cart.reduce((accumulator, item) => accumulator + item.qty, 0);
+  useEffect(() => {
+    {totalQty}
+  }, [cart])
   useEffect(() => {
     const existingCart = localStorage.getItem("cart");
     if (existingCart) {
       const cart = JSON.parse(existingCart);
-      setCart(cart)
+      setCart(cart);
     } else {
       localStorage.setItem("cart", JSON.stringify([]));
     }
   }, []);
 
-  const totalQty = cart && cart.reduce(
-    (accumulator, item) => accumulator + item.qty,
-    0
-  );
   
+
   return (
     <div
       className={`${styles.nav_bg} w-full sm:p-2 lg:px-28 lg:justify-around text-white flex flex-row items-center text-sm min-h-14`}
@@ -64,9 +65,11 @@ function Nav() {
             <FaRegHeart />
           </Link>
           <Link className="relative hover:scale-110" to={"/"}>
-            <div className="border">
+            <div>
               <FaShoppingBag />
-              <div className="absolute top-1 bg-[#1E1E1E] text-sm px-2 rounded-full">{totalQty ? totalQty : "0"}</div>
+            </div>
+            <div className="absolute bottom-1 left-4 bg-[#1E1E1E] text-sm px-1 rounded-full">
+              {totalQty ? totalQty : "0"}
             </div>
           </Link>
         </section>
