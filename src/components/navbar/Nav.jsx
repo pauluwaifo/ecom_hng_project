@@ -3,8 +3,26 @@ import { Link } from "react-router-dom";
 import { FaPlus } from "react-icons/fa6";
 import { IoSearch } from "react-icons/io5";
 import { FaRegHeart, FaShoppingBag } from "react-icons/fa";
+import { useEffect, useState } from "react";
 
 function Nav() {
+  const [cart, setCart] = useState();
+
+  useEffect(() => {
+    const existingCart = localStorage.getItem("cart");
+    if (existingCart) {
+      const cart = JSON.parse(existingCart);
+      setCart(cart)
+    } else {
+      localStorage.setItem("cart", JSON.stringify([]));
+    }
+  }, []);
+
+  const totalQty = cart && cart.reduce(
+    (accumulator, item) => accumulator + item.qty,
+    0
+  );
+  
   return (
     <div
       className={`${styles.nav_bg} w-full sm:p-2 lg:px-28 lg:justify-around text-white flex flex-row items-center text-sm min-h-14`}
@@ -46,7 +64,10 @@ function Nav() {
             <FaRegHeart />
           </Link>
           <Link className=" hover:scale-110" to={"/"}>
-            <FaShoppingBag />
+            <div className="relative border">
+              <FaShoppingBag />
+              <div className="absolute top-1 bg-[#1E1E1E] text-sm px-2 rounded-full">{totalQty ? totalQty : "0"}</div>
+            </div>
           </Link>
         </section>
       </div>

@@ -1,6 +1,6 @@
 export const products = [
   {
-    id: "GGOEAFKA087499",
+    id: "GGOEAFKA087495",
     name: "Wood sandalwood dossier",
     brand: "channel",
     description:
@@ -12,10 +12,10 @@ export const products = [
     image: ["./product_images/img_2822_480.jpg", "image2"],
     price: 98,
 
-    qty: 10,
+    inStock: 10,
   },
   {
-    id: "GGOEAFKA087499",
+    id: "GGOEAFKA087498",
     name: "fragrance enhancer,..",
     brand: "channel",
     description:
@@ -27,10 +27,10 @@ export const products = [
     image: ["./product_images/img_2823_480.jpg", "image2"],
     price: 125,
 
-    qty: 10,
+    inStock: 10,
   },
   {
-    id: "GGOEAFKA087499",
+    id: "GGOEAFKA087490",
     name: "Utredo Blanche",
     brand: "channel",
     description:
@@ -42,10 +42,10 @@ export const products = [
     image: ["./product_images/img_2824_480.jpg", "image2"],
     price: 100,
 
-    qty: 10,
+    inStock: 10,
   },
   {
-    id: "GGOEAFKA087499",
+    id: "GGOEAFKA087491",
     name: "Feminine OUD Adwene",
     brand: "channel",
     description:
@@ -57,6 +57,6 @@ export const products = [
     image: ["./product_images/img_2825_480.jpg", "image2"],
     price: 132,
 
-    qty: 10,
+    inStock: 10,
   },
 ];
