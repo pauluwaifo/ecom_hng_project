@@ -7,8 +7,10 @@ import { useEffect, useState } from "react";
 
 function Nav() {
   const [cart, setCart] = useState();
+  const [scaleNo, setScaleNo] = useState(1)
   const totalQty =
   cart && cart.reduce((accumulator, item) => accumulator + item.qty, 0);
+
  
   useEffect(() => {
     const existingCart = localStorage.getItem("cart");
@@ -20,7 +22,12 @@ function Nav() {
     }
   }, []);
 
-  
+  useEffect(() => {
+    setTimeout(() => {
+      setScaleNo(1);
+    }, 200);
+    setScaleNo(1.2);
+  }, [totalQty]);
 
   return (
     <div
@@ -66,9 +73,10 @@ function Nav() {
             <div>
               <FaShoppingBag />
             </div>
-            <div className="absolute bottom-1 left-4 bg-[#1E1E1E] text-sm px-1 rounded-full">
+            <div style={{ transform: `scale(${scaleNo})`}} className="absolute bottom-1 left-4 bg-[#1E1E1E] text-sm px-1 rounded-full">
               {totalQty ? totalQty : "0"}
             </div>
+            
           </Link>
         </section>
       </div>
