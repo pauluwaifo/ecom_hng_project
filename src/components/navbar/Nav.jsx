@@ -9,9 +9,7 @@ function Nav() {
   const [cart, setCart] = useState();
   const totalQty =
   cart && cart.reduce((accumulator, item) => accumulator + item.qty, 0);
-  useEffect(() => {
-    {totalQty}
-  }, [cart])
+ 
   useEffect(() => {
     const existingCart = localStorage.getItem("cart");
     if (existingCart) {
