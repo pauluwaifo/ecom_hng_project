@@ -4,7 +4,7 @@ import { products } from "../../products";
 
 function Section_2() {
   return (
-    <div className="flex wrap flex-col lg:mt-24 sm:mt-10 sm:pb-20">
+    <div className="flex wrap flex-col lg:mt-24 sm:mt-10 sm:pb-32">
       {/* heading */}
       <div className="flex sm:flex-col lg:flex-row wrap sm:items-start">
         <div className="sm:basis-full basis-1/2">

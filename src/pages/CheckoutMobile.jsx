@@ -1,11 +1,9 @@
 import { useContext, useEffect, useState } from "react";
 import { IoStar, IoStarHalf } from "react-icons/io5";
-import { FaCreditCard, FaPaypal } from "react-icons/fa";
+import { IoIosArrowDown } from "react-icons/io";
 import AppContext from "../context/AppContext";
-import { Link } from "react-router-dom";
 
-
-function Cart() {
+function CheckoutMobile() {
   const { cart, dispatch, setAlert, setMessage, setAlert_bg } =
     useContext(AppContext);
   const [payMethod, setPayMethod] = useState(1);
@@ -35,7 +33,7 @@ function Cart() {
     cart && cart.reduce((accumulator, item) => accumulator + item.price, 0);
 
   return (
-    <div className="flex flex-row flex-wrap  mt-28 lg:p-10 sm:pb-28">
+    <div className="flex flex-row flex-wrap mt-28 lg:p-10 sm:pb-28">
       {/* cart items */}
       <div className="flex flex-col flex-wrap lg:basis-3/4 sm:basis-full p-2">
         {/* heading */}
@@ -43,10 +41,10 @@ function Cart() {
         {/* divider */}
         <div className="border-b-2 mt-3 sm:hidden lg:block"></div>
 
-        <table className="lg:mt-12">
+        <table className="mt-12">
           <thead>
             <tr className="px-2">
-              <th className="text-left" colSpan={2}>
+              <th className="text-left " colSpan={2}>
                 Products
               </th>
               <th className="text-left lg:table-cell sm:hidden">Size</th>
@@ -169,157 +167,51 @@ function Cart() {
           </div>
         </section>
       </div>
-
-{/* checkOut nav */}
-      <div className="lg:hidden sm:basis-full px-10 mt-32">
-        <Link to={"/checkout"} className="w-full block text-center text-white text-semibold rounded-xl bg-[#49a2f5] p-3">
-          Proceed to checkout
-        </Link>
+      {/* delivery address */}
+      <div className="lg:hidden sm:basis-full px-10 mt-10">
+        <div className="flex flex-row justify-between border rounded-xl p-3 items-center">
+          <p className="font-semibold text-sm">Delivery address</p>
+          <p className="font-semibold flex items-center text-[10px]">
+            Plot S24 Atlantic{" "}
+            <IoIosArrowDown className="text-sm mx-2 text-red-500" />
+          </p>
+        </div>
+        <div className="flex flex-row justify-end">Add a code</div>
       </div>
 
+      {/* order summary */}
+      <div className="lg:hidden sm:basis-full px-10 mt-10">
+        <div className="flex flex-col border rounded-xl p-3 ">
+          <p className="font-semibold">Order Summary</p>
 
-      {/* payment method */}
-      <div className="sm:hidden lg:block lg:basis-1/4 border-2 bg-[#fafafa] max-h-[560px] mt-16 rounded-lg p-4">
-        <h2 className="font-bold text-2xl mt-5">You're almost there!</h2>
-        <p className="mt-3 font-semibold">Payment method</p>
+          <div className="flex flex-row justify-between">
+            <p>Order amount</p>
+            <p className="text-blue-500">${totalPrice}</p>
+          </div>
+          <div className="flex flex-row justify-between">
+            <p>Sub - total</p>
+            <p className="text-blue-500">${totalPrice}</p>
+          </div>
+          <div className="flex flex-row justify-between">
+            <p>Deliver charges</p>
+            <p className="text-blue-500">$100</p>
+          </div>
+          <div className="border-t-2 mt-2"></div>
+          <div className="flex flex-row justify-between">
+            <p className="font-semibold">Total Amount</p>
+            <p className="text-red-500 font-semibold">$100</p>
+          </div>
+        </div>
+      </div>
 
-        <form>
-          {/* radio buttons payment method credit card */}
-          <section className="flex items-center mt-2">
-            <input
-              checked={payMethod == 1 ? true : false}
-              type="radio"
-              id="payment"
-              name="credit-card"
-              value="credit-card"
-              onClick={() => setPayMethod(1)}
-            />
-            <label
-              htmlFor="payment"
-              className="font-semibold flex flex-row text-sm items-center mx-2"
-            >
-              <FaCreditCard className="mx-2 text-lg" />
-              <span className="mx-2">Credit card</span>
-            </label>
-          </section>
-
-          {/* radio buttons payment method paypal */}
-          <section className="flex items-center mt-2">
-            <input
-              checked={payMethod !== 1 ? true : false}
-              type="radio"
-              id="payment2"
-              name="paypal"
-              value="paypal"
-              onClick={() => setPayMethod(2)}
-            />{" "}
-            <label
-              htmlFor="payment2"
-              className="font-semibold flex flex-row text-sm items-center mx-2"
-            >
-              <FaPaypal className="mx-2 text-lg" />
-              <span className="mx-2">Paypal</span>
-            </label>
-          </section>
-
-          {/* first and last name */}
-          <section className="flex flex-row flex-wrap mt-8">
-            <div className="basis-1/2 ">
-              <label className="font-semibold" htmlFor="firstname">
-                First name
-              </label>
-              <input
-                className="bg-white w-28 mt-2 outline-0 border-0 px-2 mx-1 placeholder:text-gray-600"
-                id="firstname"
-                type="text"
-                placeholder="First name"
-              />
-            </div>
-
-            <div className="basis-1/2">
-              <label className="font-semibold" htmlFor="lastname">
-                Last name
-              </label>
-              <input
-                className="bg-white w-28 mt-2 outline-0 border-0 px-1 mx-1 placeholder:text-gray-600"
-                id="lastname"
-                type="text"
-                placeholder="Last name"
-              />
-            </div>
-          </section>
-
-          {/* credit card number */}
-          <section className="flex flex-row items-center flex-wrap mt-8">
-            <div className="basis-full flex-col flex ">
-              <label className="font-semibold" htmlFor="firstname">
-                Card number
-              </label>
-              <div className="bg-white w-full px-2 flex flex-row items-center">
-                <FaCreditCard />
-                <input
-                  className="bg-white w-full outline-0 border-0 mx-1 placeholder:text-gray-600"
-                  id="firstname"
-                  type="text"
-                  autoComplete="cc-number"
-                />
-              </div>
-            </div>
-          </section>
-
-          {/* expiration date */}
-          <section className="flex flex-row flex-wrap mt-8">
-            <div className="basis-[30%] ">
-              <label className="font-semibold" htmlFor="firstname">
-                Expiration
-              </label>
-
-              <input
-                className="bg-white w-16 mt-2 outline-0 border-0 px-1 py-1 mx-1 placeholder:text-gray-600"
-                id="day"
-                type="number"
-                placeholder="05"
-              />
-            </div>
-
-            <div className="basis-[20%] ">
-              <label className="font-semibold" htmlFor="firstname">
-                date
-              </label>
-              <input
-                className="bg-white w-16 mt-2 outline-0 border-0 px-1 py-1 mx-1 placeholder:text-gray-600"
-                id="year"
-                type="number"
-                placeholder="2026"
-              />
-            </div>
-
-            <div className="basis-[30%] text-center">
-              <label className="" htmlFor="firstname">
-                CVV
-              </label>
-              <input
-                className="bg-white w-16 mt-2 outline-0 border-0 px-1 py-1 mx-1 placeholder:text-gray-600"
-                id="year"
-                type="number"
-                placeholder="295"
-              />
-            </div>
-          </section>
-
-          {/* button */}
-          <section className="flex items-center flex-row justify-center mt-20">
-            <button
-              type="button"
-              className="bg-[#e64844] text-white font-bold px-5 w-56 rounded-lg py-2"
-            >
-              check out
-            </button>
-          </section>
-        </form>
+      {/* make payment button */}
+      <div className="lg:hidden sm:basis-full px-10 mt-5">
+        <button className="w-full text-white text-semibold rounded-xl bg-[#49a2f5] p-3">
+          Make payment
+        </button>
       </div>
     </div>
   );
 }
 
-export default Cart;
+export default CheckoutMobile;
