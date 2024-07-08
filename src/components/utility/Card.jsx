@@ -1,5 +1,4 @@
-import { IoStar } from "react-icons/io5";
-import { IoStarHalf } from "react-icons/io5";
+import { IoStar, IoStarHalf } from "react-icons/io5";
 import { useState } from "react";
 
 function Card({ item }) {
@@ -9,7 +8,9 @@ function Card({ item }) {
     const cart = existingCart ? JSON.parse(existingCart) : [];
     cart.push({
       id: product.id,
+      image: product.image[0],
       name: product.name,
+      price: product.price,
       inStock: product.inStock,
       qty,
     });

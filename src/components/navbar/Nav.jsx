@@ -68,7 +68,7 @@ function Nav() {
           <Link className="mx-2 hover:scale-110" to={"/"}>
             <FaRegHeart />
           </Link>
-          <Link className="relative flex flex-row items-center hover:scale-110" to={"/"}>
+          <Link to="/cart" className="relative flex flex-row items-center hover:scale-110">
             <div>
               <FaShoppingBag />
             </div>
