@@ -7,13 +7,26 @@ function Cart() {
   const { cart, dispatch, setAlert, setMessage, setAlert_bg } =
     useContext(AppContext);
   const [payMethod, setPayMethod] = useState(1);
-  const [newQty, setNewQty] = useState(1);
 
   const handleDelete = (item) => {
     dispatch({ type: "DELETE_CART_ITEM", payload: item.id });
     setAlert(true);
     setMessage("1 ITEM DELETED FROM YOUR CART ");
     setAlert_bg("bg-red-500");
+  };
+
+  const handleAddQty = (item) => {
+    dispatch({
+      type: "UPDATE_ITEM_QTY",
+      payload: { id: item.id, qty: item.qty + 1 },
+    });
+  };
+
+  const handleSubQty = (item) => {
+    dispatch({
+      type: "UPDATE_ITEM_QTY",
+      payload: { id: item.id, qty: item.qty - 1 },
+    });
   };
 
   const totalPrice =
@@ -50,7 +63,11 @@ function Cart() {
                   {/* image, product info... */}
                   <td className="w-36">
                     {/* image */}
-                    <img src={`${item.image[0]}`} alt={item.name} width={"100%"} />
+                    <img
+                      src={`${item.image[0]}`}
+                      alt={item.name}
+                      width={"100%"}
+                    />
                   </td>
                   {/* qty */}
                   <td className="flex flex-col justify-center min-h-36 p-2">
@@ -73,7 +90,25 @@ function Cart() {
                     </p>
                   </td>
                   {/* item qty */}
-                  <td className="p-5">{item.qty}</td>
+                  <td>
+                    <div className="flex flex-row items-center justify-start">
+                      <button
+                        className="px-[7px] border rounded-full flex flex-row items-center justify-center"
+                        onClick={() => handleSubQty(item)}
+                      >
+                        -
+                      </button>
+                      <p className="mx-1"> {item.qty} </p>
+                      <button
+                        className="px-[6px] border rounded-full flex flex-row items-center justify-center"
+                        onClick={() => handleAddQty(item)}
+                      >
+                        +
+                      </button>
+                    </div>
+                  </td>
+
+                  {/* item price */}
                   <td className="font-bold text-xl">
                     ${(item.price * item.qty).toFixed(2)}
                   </td>

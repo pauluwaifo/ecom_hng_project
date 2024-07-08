@@ -26,14 +26,13 @@ const reducer = (state, action) => {
       return { ...state, cart: updatedCart };
 
     case "UPDATE_ITEM_QTY":
-      return {
-        ...state,
-        cart: state.cart.map((item) =>
-          item.id == action.payload.id
-            ? [...state.cart, { qty: action.payload.qty }]
-            : null
-        ),
-      };
+      const updatedQty = state.cart.map((item) =>
+        item.id == action.payload.id
+          ? { ...item, qty: action.payload.qty }
+          : item
+      );
+      localStorage.setItem("cart", JSON.stringify(updatedQty));
+      return { ...state, cart: updatedQty };
 
     case "DELETE_CART_ITEM":
       const updateCart = state.cart.filter((item) =>
