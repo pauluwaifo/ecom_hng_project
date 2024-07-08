@@ -64,7 +64,7 @@ function Cart() {
                   <td className="w-36">
                     {/* image */}
                     <img
-                      src={`${item.image[0]}`}
+                      src={`..assets/${item.image[0]}`}
                       alt={item.name}
                       width={"100%"}
                     />
