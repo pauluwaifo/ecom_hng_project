@@ -26,14 +26,14 @@ function CartNav() {
     setScaleNo(1.2);
   }, [totalQty]);
   return (
-    <div className="p-10 flex flex-row flex-wrap items-center bg-white">
+    <div className="p-10 flex z-10 flex-row flex-wrap items-center bg-white">
       <div className="basis-1/2 flex justify-start text-3xl font-bold">
         <Link to="/">Adventure</Link>
       </div>
       <div className="basis-1/2 flex justify-around font-bold">
-        <Link to={"/"}>Shop</Link>
-        <Link to={"/"}>About us</Link>
-        <Link to={"/"}>Contact</Link>
+        <Link className="sm:hidden lg:block" to={"/"}>Shop</Link>
+        <Link className="sm:hidden lg:block" to={"/"}>About us</Link>
+        <Link className="sm:hidden lg:block" to={"/"}>Contact</Link>
         <div className="flex flex-row items-center text-xl">
             {/* search icon */}
           <button className="mx-5">

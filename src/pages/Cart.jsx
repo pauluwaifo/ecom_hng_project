@@ -14,6 +14,13 @@ function Cart() {
     }
   }, []);
 
+  const handleDelete = (item) => {
+    var cartItems = localStorage.getItem("cart")
+    const cart = JSON.parse(cartItems)
+    const updatedCart = cart && cart.filter(items => items.id !== item.id)
+    localStorage.setItem("cart", JSON.stringify(updatedCart))
+  }
+
   
 
   const totalPrice =
@@ -21,7 +28,7 @@ function Cart() {
   return (
     <div className="flex flex-row flex-wrap mt-28 p-10">
       {/* cart items */}
-      <div className="flex flex-col flex-wrap basis-3/4 p-2">
+      <div className="flex flex-col flex-wrap lg:basis-3/4 sm:basis-full p-2">
         {/* heading */}
         <h1 className="text-4xl font-bold ">Shopping Bag</h1>
         {/* divider */}
@@ -77,6 +84,9 @@ function Cart() {
                   <td className="font-bold text-xl">
                     ${(item.price * item.qty).toFixed(2)}
                   </td>
+                  <td className=" text-xl">
+                    <button onClick={()=> handleDelete(item)}className="px-2 py-1">X</button>
+                  </td>
                 </tr>
               ))
             ) : (
@@ -105,7 +115,7 @@ function Cart() {
       </div>
 
       {/* payment method */}
-      <div className="basis-1/4 border-2 bg-[#fafafa] max-h-[560px] mt-16 rounded-lg p-4">
+      <div className="lg:basis-1/4 border-2 bg-[#fafafa] max-h-[560px] mt-16 rounded-lg p-4">
         <h2 className="font-bold text-2xl mt-5">You're almost there!</h2>
         <p className="mt-3 font-semibold">Payment method</p>
 

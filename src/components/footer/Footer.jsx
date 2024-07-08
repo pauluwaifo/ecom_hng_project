@@ -10,7 +10,7 @@ function Footer() {
       <div className="bg-[#2b2b2b] px-10 pt-20 pb-32">
         <div className="flex flex-row flex-wrap">
           {/* COL-1 */}
-          <div className="sm:basis-1/2 sm:mt-5 lg:basis-1/4 flex flex-col px-5">
+          <div className="sm:basis-1/2 sm:mt-5 lg:basis-1/4 flex flex-col">
             <Link className="font-bold text-xl" to={"/"}>
               MIKA'S EMPIRE
             </Link>
