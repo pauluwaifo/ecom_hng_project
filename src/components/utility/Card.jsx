@@ -16,7 +16,7 @@ function Card({ item, url }) {
   return (
     <div className="sm:basis-[45%] lg:basis-[32.5%] border-2 m-1 p-2">
       <div className="w-full lg:h-80 sm:h-28 flex justify-center overflow-hidden overflow-clip">
-        <img className="h-full" src={`${url}${item.image[0]}`} alt={item.name} />
+        <img className="h-full" src={`${item.image[0]}`} alt={item.name} />
       </div>
 
       <div className="flex items-center">
