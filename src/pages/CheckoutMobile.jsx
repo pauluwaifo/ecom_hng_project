@@ -6,7 +6,72 @@ import AppContext from "../context/AppContext";
 function CheckoutMobile() {
   const { cart, dispatch, setAlert, setMessage, setAlert_bg } =
     useContext(AppContext);
-  const [payMethod, setPayMethod] = useState(1);
+
+  const PaymentPage = () => {
+    return (
+      <div className="top-0 left-0 w-full h-full bg-white/90 backdrop-blur-sm p-5 justify-center sm:block lg:hidden fixed z-10 flex flex-col">
+        <div className="flex flex-row justify-between items-center mt-16">
+          <p className="text-xl font-bold">ADD NEW CARD</p>
+          <p className="text-white bg-gray-500 inline-block px-[10px] py-[2px] rounded-full">
+            x
+          </p>
+        </div>
+        {/* card name */}
+        <div className="mt-5">
+          <label>Name on card</label>
+          <div className="border w-full p-2 rounded-lg flex flex-row items-center justify-between">
+            <input
+              className="bg-transparent"
+              type="text"
+              placeholder="Card name"
+            />
+            <p className="text-white bg-gray-500 inline-block px-[10px] py-[2px] rounded-full">
+              x
+            </p>
+          </div>
+        </div>
+        {/* card number */}
+        <div className="mt-5">
+          <label>Card number</label>
+          <div className="border w-full p-2 rounded-lg flex flex-row items-center justify-between">
+            <input
+              className="bg-transparent"
+              type="text"
+              placeholder="Card name"
+            />
+            <p className="text-white bg-gray-500 inline-block px-[10px] py-[2px] rounded-full">
+              x
+            </p>
+          </div>
+        </div>
+        {/* card expiration date */}
+        <div className="flex mt-5 flex-row justify-between">
+          <div className="mx-1">
+            <label>Exp date</label>
+            <input
+              className="bg-transparent border w-40 p-2 rounded-lg"
+              type="text"
+              placeholder="MM/YY"
+            />
+          </div>
+          <div className="mx-2">
+            <label>Security code</label>
+            <input
+              className="bg-transparent border w-36 p-2 rounded-lg"
+              type="text"
+              placeholder="CVV"
+            />
+          </div>
+        </div>
+        {/* make payment button */}
+      <div className="lg:hidden sm:basis-full px-5 mt-40">
+        <button className="w-full text-white text-semibold rounded-xl bg-[#49a2f5] p-3">
+          Save and Proceed
+        </button>
+      </div>
+      </div>
+    );
+  };
 
   const handleDelete = (item) => {
     dispatch({ type: "DELETE_CART_ITEM", payload: item.id });
@@ -34,6 +99,7 @@ function CheckoutMobile() {
 
   return (
     <div className="flex flex-row flex-wrap mt-28 lg:p-10 sm:pb-28">
+      <PaymentPage />
       {/* cart items */}
       <div className="flex flex-col flex-wrap lg:basis-3/4 sm:basis-full p-2">
         {/* heading */}
