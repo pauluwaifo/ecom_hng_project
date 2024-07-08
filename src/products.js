@@ -62,7 +62,7 @@ export const products = [
     inStock: 10,
   },
   {
-    id: "GGOEAFKA087495",
+    id: "GGOEAFKA0874923",
     name: "Byred0 Vanille Antique",
     brand: "channel",
     description:
@@ -92,7 +92,7 @@ export const products = [
     inStock: 10,
   },
   {
-    id: "GGOEAFKA087498",
+    id: "GGOEAFKA08749800",
     name: "Blossom rose de parfum",
     brand: "channel",
     description:

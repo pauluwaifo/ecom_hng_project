@@ -1,26 +1,20 @@
 import { IoStar, IoStarHalf } from "react-icons/io5";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import AppContext from "../../context/AppContext";
 
 function Card({ item }) {
-  const [qty, setQty] = useState(1);
+  const qty = 1;
+  const { dispatch, setAlert, setMessage, setAlert_bg } = useContext(AppContext);
+
   const addToCart = (product) => {
-    const existingCart = localStorage.getItem("cart");
-    const cart = existingCart ? JSON.parse(existingCart) : [];
-    cart.push({
-      id: product.id,
-      image: product.image[0],
-      name: product.name,
-      price: product.price,
-      inStock: product.inStock,
-      qty,
-    });
-    localStorage.setItem("cart", JSON.stringify(cart));
+    dispatch({ type: "ADD_TO_CART", payload: { ...product, qty } });
+    setAlert(true)
+    setMessage("1 ITEM ADDED TO YOUR CART ")
+    setAlert_bg("bg-green-500")
   };
 
   return (
-    <div
-      className="sm:basis-[45%] lg:basis-[32.5%] border-2 m-1 p-2"
-    >
+    <div className="sm:basis-[45%] lg:basis-[32.5%] border-2 m-1 p-2">
       <div className="w-full lg:h-80 sm:h-28 flex justify-center overflow-hidden overflow-clip">
         <img className="h-full" src={item.image[0]} alt={item.name} />
       </div>

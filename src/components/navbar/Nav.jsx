@@ -3,30 +3,29 @@ import { Link } from "react-router-dom";
 import { FaPlus } from "react-icons/fa6";
 import { IoSearch } from "react-icons/io5";
 import { FaRegHeart, FaShoppingBag } from "react-icons/fa";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import AppContext from "../../context/AppContext";
 
 function Nav() {
-  const [cart, setCart] = useState();
+  const { cart } = useContext(AppContext);
   const [scaleNo, setScaleNo] = useState(1);
-  const totalQty =
-    cart && cart.reduce((accumulator, item) => accumulator + item.qty, 0);
+  const [itemsInCart, setItemsInCart] = useState();
+
 
   useEffect(() => {
-    const existingCart = localStorage.getItem("cart");
-    if (existingCart) {
-      const cart = JSON.parse(existingCart);
-      setCart(cart);
-    } else {
-      localStorage.setItem("cart", JSON.stringify([]));
-    }
-  }, []);
+    const totalQty =
+      cart && cart.reduce((accumulator, item) => accumulator + item.qty, 0);
+    setItemsInCart(totalQty);
+  }, [cart]);
 
   useEffect(() => {
-    setTimeout(() => {
+    setScaleNo(1.2);
+    const timer = setTimeout(() => {
       setScaleNo(1);
     }, 200);
-    setScaleNo(1.2);
-  }, [totalQty]);
+
+    return () => clearTimeout(timer);
+  }, [itemsInCart]);
 
   return (
     <div
@@ -68,16 +67,19 @@ function Nav() {
           <Link className="mx-2 hover:scale-110" to={"/"}>
             <FaRegHeart />
           </Link>
-          <Link to="/cart" className="relative flex flex-row items-center hover:scale-110">
+          <Link
+            to="/cart"
+            className="relative flex flex-row items-center hover:scale-110"
+          >
             <div>
               <FaShoppingBag />
             </div>
-              <div
-                style={{ transform: `scale(${scaleNo})` }}
-                className="text-sm px-1 mx-1"
-              >
-                {totalQty ? totalQty : "0"}
-              </div>
+            <div
+              style={{ transform: `scale(${scaleNo})` }}
+              className="text-sm px-1 mx-1"
+            >
+              {itemsInCart ? itemsInCart : "0"}
+            </div>
           </Link>
         </section>
       </div>

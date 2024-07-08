@@ -1,4 +1,4 @@
-import background from "../assets/img_2829_720.jpg";
+import background from "../../assets/img_2829_720.jpg";
 
 function Bannar() {
   return (

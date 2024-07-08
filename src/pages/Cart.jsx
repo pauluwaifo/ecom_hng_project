@@ -1,27 +1,20 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { IoStar, IoStarHalf } from "react-icons/io5";
 import { FaCreditCard, FaPaypal } from "react-icons/fa";
+import AppContext from "../context/AppContext";
 
 function Cart() {
-  const [cart, setCart] = useState();
-  const [payMethod, setPaymethod] = useState(1);
-  const [newQty, setNewQty] = useState(1)
-
-  useEffect(() => {
-    const cartData = localStorage.getItem("cart");
-    if (cartData) {
-      setCart(JSON.parse(cartData));
-    }
-  }, []);
+  const { cart, dispatch, setAlert, setMessage, setAlert_bg } =
+    useContext(AppContext);
+  const [payMethod, setPayMethod] = useState(1);
+  const [newQty, setNewQty] = useState(1);
 
   const handleDelete = (item) => {
-    var cartItems = localStorage.getItem("cart")
-    const cart = JSON.parse(cartItems)
-    const updatedCart = cart && cart.filter(items => items.id !== item.id)
-    localStorage.setItem("cart", JSON.stringify(updatedCart))
-  }
-
-  
+    dispatch({ type: "DELETE_CART_ITEM", payload: item.id });
+    setAlert(true);
+    setMessage("1 ITEM DELETED FROM YOUR CART ");
+    setAlert_bg("bg-red-500");
+  };
 
   const totalPrice =
     cart && cart.reduce((accumulator, item) => accumulator + item.price, 0);
@@ -33,8 +26,6 @@ function Cart() {
         <h1 className="text-4xl font-bold ">Shopping Bag</h1>
         {/* divider */}
         <div className="border-b-2 mt-3"></div>
-
-        {/* table heading */}
 
         <table className="mt-12">
           <thead>
@@ -59,7 +50,7 @@ function Cart() {
                   {/* image, product info... */}
                   <td className="w-36">
                     {/* image */}
-                    <img src={item.image} alt={item.name} width={"100%"} />
+                    <img src={`${item.image[0]}`} alt={item.name} width={"100%"} />
                   </td>
                   {/* qty */}
                   <td className="flex flex-col justify-center min-h-36 p-2">
@@ -75,17 +66,25 @@ function Cart() {
                     <p>{item.name}</p>
                   </td>
 
+                  {/* item size */}
                   <td>
                     <p className="bg-gray-200 inline-block text-sm px-2">
                       {item.size ? item.size : "NA"}
                     </p>
                   </td>
+                  {/* item qty */}
                   <td className="p-5">{item.qty}</td>
                   <td className="font-bold text-xl">
                     ${(item.price * item.qty).toFixed(2)}
                   </td>
+                  {/* delete button */}
                   <td className=" text-xl">
-                    <button onClick={()=> handleDelete(item)}className="px-2 py-1">X</button>
+                    <button
+                      onClick={() => handleDelete(item)}
+                      className="px-2 py-1"
+                    >
+                      X
+                    </button>
                   </td>
                 </tr>
               ))
@@ -128,7 +127,7 @@ function Cart() {
               id="payment"
               name="credit-card"
               value="credit-card"
-              onClick={() => setPaymethod(1)}
+              onClick={() => setPayMethod(1)}
             />
             <label
               htmlFor="payment"
@@ -147,7 +146,7 @@ function Cart() {
               id="payment2"
               name="paypal"
               value="paypal"
-              onClick={() => setPaymethod(2)}
+              onClick={() => setPayMethod(2)}
             />{" "}
             <label
               htmlFor="payment2"
@@ -243,9 +242,12 @@ function Cart() {
             </div>
           </section>
 
-{/* button */}
+          {/* button */}
           <section className="flex items-center flex-row justify-center mt-20">
-            <button type="button" className="bg-[#e64844] text-white font-bold px-5 w-56 rounded-lg py-2">
+            <button
+              type="button"
+              className="bg-[#e64844] text-white font-bold px-5 w-56 rounded-lg py-2"
+            >
               check out
             </button>
           </section>

@@ -1,6 +1,7 @@
-import Bannar from "../components/Bannar";
+import Bannar from "../components/sections/Bannar";
 import Section_1 from "../components/sections/Section_1";
 import Section_2 from "../components/sections/Section_2";
+
 
 function Home() {
   return (
