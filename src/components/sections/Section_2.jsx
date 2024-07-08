@@ -25,7 +25,7 @@ function Section_2() {
       </div>
       {/* product listing */}
       <div className="flex flex-row mt-5 flex-wrap sm:justify-center lg:justify-start">
-        {products && products.map((item) => <Card key={item.id} url={"../assets/"} item={item}/>)}
+        {products && products.map((item) => <Card key={item.id} url={"./assets/"} item={item}/>)}
       </div>
     </div>
   );
