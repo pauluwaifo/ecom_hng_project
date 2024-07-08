@@ -9,7 +9,7 @@ export const products = [
 
     keywords:
       "Android Small Removable Sticker Sheet, android stickers, sticker sheets, removable sticker sheets, small sticker sheet, android small sticker sheets, Android Sheet",
-    image: ["/assets/img_2822_480.jpg", "image2"],
+    image: ["img_2822_480.jpg", "image2"],
     price: 98,
     inStock: 10,
   },
