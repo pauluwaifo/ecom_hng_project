@@ -5,7 +5,7 @@ import Section_2 from "../components/sections/Section_2";
 
 function Home() {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col lg:px-0 sm:px-2">
       {/* banner */}
       <Bannar />
       {/* sections */}

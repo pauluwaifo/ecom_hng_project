@@ -2,7 +2,7 @@ import image from "../../assets/jeroen-den-otter-2b0JeJTEclQ-unsplash.png";
 
 function Section_1() {
   return (
-    <div className="flex sm:flex-col lg:flex-row justify-center items-center">
+    <div className="sm:hidden lg:flex sm:flex-col lg:flex-row justify-center items-center">
       <div className="sm:my-[-25px] lg:my-[-100px] sm:basis-64 lg:basis-80">
         <img className="lg:w-full sm:w-[150px]" src={image} alt={image} />
       </div>
