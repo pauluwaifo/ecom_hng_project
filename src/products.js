@@ -4,7 +4,7 @@ export const products = [
     name: "Wood sandalwood dossier",
     brand: "channel",
     description:
-      "Show your Android pride by placing these 8 fun stickers on your technology products or accessories!",
+      "    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus harum qui veniam architecto deleniti quia iure vitae quibusdam, sed praesentium,   ",
     dimensions: "7 x 6 inch",
 
     keywords:
