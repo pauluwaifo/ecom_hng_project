@@ -2,15 +2,19 @@ import TopBar from "./Topbar";
 import Nav from "./Nav";
 import CartNav from "./CartNav";
 
+
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useMatch } from "react-router-dom";
 
 function NavBar() {
+  const matchCart = useMatch("/cart");
+  const matchCheckout = useMatch("/checkout");
+  const matchProduct = useMatch("/product/:id");
   const [path, setPath] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname == "/cart" || location.pathname == "/checkout") {
+    if (matchCart || matchCheckout || matchProduct) {
       setPath(true);
     } else {
       setPath(false);

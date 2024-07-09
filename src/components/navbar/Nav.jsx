@@ -64,7 +64,7 @@ function Nav() {
           </form>
           <div className="lg:hidden sm:flex flex-col text-black">
             welcome back,
-            <p className="font-semibold text-lg">Sonia</p>
+            <p className="font-semibold text-lg">User</p>
           </div>
 
           <div className="lg:hidden sm:flex flex-col text-black">

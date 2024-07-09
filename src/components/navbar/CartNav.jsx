@@ -1,13 +1,18 @@
 import { IoSearch } from "react-icons/io5";
 import { FaShoppingBag } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useMatch } from "react-router-dom";
 import { useState, useEffect, useContext } from "react";
+import { IoIosArrowDropleft } from "react-icons/io";
 import AppContext from "../../context/AppContext";
 
 function CartNav() {
   const { cart } = useContext(AppContext);
   const [scaleNo, setScaleNo] = useState(1);
   const [itemsInCart, setItemsInCart] = useState();
+
+  const navClass = window.location.pathname.includes("/product/")
+    ? "lg:bg-[#1e1e1e] lg:text-white"
+    : "lg:text-black lg:bg-white";
 
   useEffect(() => {
     const totalQty =
@@ -25,22 +30,30 @@ function CartNav() {
   }, [itemsInCart]);
 
   return (
-    <div className="lg:p-10 sm:h-24 sm:p-2 flex z-10 flex-row flex-wrap sm:items-end lg:items-center lg:bg-white sm:bg-[#130985] lg:text-black sm:text-white">
+    <div>
+      {window.location.pathname !== "/cart" ? (
+        <div className="bg-white p-2 text-bold text-black text-2xl">
+          <Link to={"/"}>
+            <IoIosArrowDropleft />
+          </Link>
+        </div>
+      ) : null}
+      <div
+        className={`lg:py-4 lg:px-10 sm:h-24 lg:h-16 sm:p-2 flex z-10 flex-row flex-wrap sm:items-end lg:items-center sm:bg-[#130985] sm:text-white ${navClass}`}
+      >
+        <div className="basis-1/2 flex justify-start lg:text-3xl sm:text-sm lg:font-bold sm:font-normal">
+          <Link className="sm:hidden lg:block" to="/">
+            Adventure
+          </Link>
+          <Link className="sm:block lg:hidden text-white/70" to="/">
+            cancel
+          </Link>
+        </div>
 
-      <div className="basis-1/2 flex justify-start lg:text-3xl sm:text-sm lg:font-bold sm:font-normal">
-        <Link className="sm:hidden lg:block" to="/">
-          Adventure
-        </Link>
-        <Link className="sm:block lg:hidden text-white/70" to="/">
-          cancel
-        </Link>
-      </div>
-
-      <div className="basis-1/2 flex sm:items-end sm:justify-start lg:justify-around font-bold">
-        <p className="sm:block lg:hidden text-white text-xl">
-          {window.location.pathname == "/cart" ? "Cart" : "Checkout"}
-          
-        </p>
+        <div className="basis-1/2 flex sm:items-end sm:justify-start lg:justify-around font-bold">
+          <p className="sm:block lg:hidden text-white text-xl">
+            {window.location.pathname == "/cart" ? "Cart" : "Checkout"}
+          </p>
           <Link className="sm:hidden lg:inline-block" to={"/"}>
             Shop
           </Link>
@@ -72,6 +85,7 @@ function CartNav() {
               </div>
             </Link>
           </div>
+        </div>
       </div>
     </div>
   );

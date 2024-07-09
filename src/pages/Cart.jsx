@@ -4,7 +4,6 @@ import { FaCreditCard, FaPaypal } from "react-icons/fa";
 import AppContext from "../context/AppContext";
 import { Link } from "react-router-dom";
 
-
 function Cart() {
   const { cart, dispatch, setAlert, setMessage, setAlert_bg } =
     useContext(AppContext);
@@ -20,14 +19,14 @@ function Cart() {
   const handleAddQty = (item) => {
     dispatch({
       type: "UPDATE_ITEM_QTY",
-      payload: { id: item.id, qty: item.qty + 1 },
+      payload: { id: item.id, qty: Number(item.qty) + 1 },
     });
   };
 
   const handleSubQty = (item) => {
     dispatch({
       type: "UPDATE_ITEM_QTY",
-      payload: { id: item.id, qty: item.qty - 1 },
+      payload: { id: item.id, qty: Number(item.qty) - 1 },
     });
   };
 
@@ -67,13 +66,16 @@ function Cart() {
                 <>
                   <tr className="items-center lg:border-t-[1.5px] mt-5 lg:p-5 ">
                     {/* image, product info... */}
+
                     <td className="w-36">
                       {/* image */}
-                      <img
-                        src={`/assets/${item.image[0]}`}
-                        alt={item.name}
-                        width={"100%"}
-                      />
+                      <Link to={`/product/${item.id}`}>
+                        <img
+                          src={`/assets/${item.image[0]}`}
+                          alt={item.name}
+                          width={"100%"}
+                        />
+                      </Link>
                     </td>
 
                     {/* item-name */}
@@ -170,13 +172,15 @@ function Cart() {
         </section>
       </div>
 
-{/* checkOut nav */}
+      {/* checkOut nav */}
       <div className="lg:hidden sm:basis-full px-10 mt-32">
-        <Link to={"/checkout"} className="w-full block text-center text-white text-semibold rounded-xl bg-[#49a2f5] p-3">
+        <Link
+          to={"/checkout"}
+          className="w-full block text-center text-white text-semibold rounded-xl bg-[#49a2f5] p-3"
+        >
           Proceed to checkout
         </Link>
       </div>
-
 
       {/* payment method */}
       <div className="sm:hidden lg:block lg:basis-1/4 border-2 bg-[#fafafa] max-h-[560px] mt-16 rounded-lg p-4">

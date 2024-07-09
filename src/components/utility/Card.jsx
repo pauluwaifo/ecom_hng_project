@@ -1,11 +1,11 @@
 import { IoStar, IoStarHalf } from "react-icons/io5";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import AppContext from "../../context/AppContext";
 import { Link } from "react-router-dom";
 
 function Card({ item }) {
   const qty = 1;
-  const { dispatch, setAlert, setMessage, setAlert_bg } =
+  const { dispatch, setAlert, setMessage, setAlert_bg, cart } =
     useContext(AppContext);
 
   const addToCart = (product) => {
@@ -33,7 +33,7 @@ function Card({ item }) {
           <IoStar className="text-[#f7cb38]" />
           <IoStarHalf className="text-[#f7cb38] " />
         </div>
-        <p>{item.name}</p>
+        <p className="text-ellipsis overflow-hidden">{item.name}</p>
       </Link>
       <div className="flex sm:flex-col lg:flex-row justify-between mt-2 items-center">
         <p className="font-bold lg:text-xl ">${item.price.toFixed(2)}</p>
