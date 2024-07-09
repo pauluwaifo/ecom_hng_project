@@ -51,6 +51,7 @@ function CartContext({ children }) {
   const [alert_bg, setAlert_bg] = useState("");
   const [state, dispatch] = useReducer(reducer, initialState);
 
+  // set alert to false
   setTimeout(
     () => {
       setAlert(false);

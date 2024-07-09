@@ -16,26 +16,25 @@ function Card({ item }) {
   };
 
   return (
-    <Link
-      to={`/product/${item.id}`}
-      className="sm:basis-[45%] lg:basis-[32.5%] border-2 m-1 p-2"
-    >
-      <div className="w-full lg:h-80 sm:h-28 flex justify-center overflow-hidden overflow-clip">
-        <img
-          className="h-full"
-          src={`/assets/${item.image[0]}`}
-          alt={item.name}
-        />
-      </div>
+    <div className="sm:basis-[45%] lg:basis-[32.5%] border-2 m-1 p-2">
+      <Link to={`/product/${item.id}`}>
+        <div className="w-full lg:h-80 sm:h-28 flex justify-center overflow-hidden overflow-clip">
+          <img
+            className="h-full"
+            src={`/assets/${item.image[0]}`}
+            alt={item.name}
+          />
+        </div>
 
-      <div className="flex items-center">
-        <IoStar className="text-[#f7cb38]" />
-        <IoStar className="text-[#f7cb38]" />
-        <IoStar className="text-[#f7cb38]" />
-        <IoStar className="text-[#f7cb38]" />
-        <IoStarHalf className="text-[#f7cb38] " />
-      </div>
-      <p>{item.name}</p>
+        <div className="flex items-center">
+          <IoStar className="text-[#f7cb38]" />
+          <IoStar className="text-[#f7cb38]" />
+          <IoStar className="text-[#f7cb38]" />
+          <IoStar className="text-[#f7cb38]" />
+          <IoStarHalf className="text-[#f7cb38] " />
+        </div>
+        <p>{item.name}</p>
+      </Link>
       <div className="flex sm:flex-col lg:flex-row justify-between mt-2 items-center">
         <p className="font-bold lg:text-xl ">${item.price.toFixed(2)}</p>
         <button
@@ -45,7 +44,7 @@ function Card({ item }) {
           Add to bag
         </button>
       </div>
-    </Link>
+    </div>
   );
 }
 
