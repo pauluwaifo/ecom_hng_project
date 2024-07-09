@@ -1,22 +1,31 @@
 import { IoStar, IoStarHalf } from "react-icons/io5";
 import { useContext, useState } from "react";
 import AppContext from "../../context/AppContext";
+import { Link } from "react-router-dom";
 
-function Card({ item, url }) {
+function Card({ item }) {
   const qty = 1;
-  const { dispatch, setAlert, setMessage, setAlert_bg } = useContext(AppContext);
+  const { dispatch, setAlert, setMessage, setAlert_bg } =
+    useContext(AppContext);
 
   const addToCart = (product) => {
     dispatch({ type: "ADD_TO_CART", payload: { ...product, qty } });
-    setAlert(true)
-    setMessage("1 ITEM ADDED TO YOUR CART ")
-    setAlert_bg("bg-green-500")
+    setAlert(true);
+    setMessage("1 ITEM ADDED TO YOUR CART ");
+    setAlert_bg("bg-green-500");
   };
 
   return (
-    <div className="sm:basis-[45%] lg:basis-[32.5%] border-2 m-1 p-2">
+    <Link
+      to={`/product/${item.id}`}
+      className="sm:basis-[45%] lg:basis-[32.5%] border-2 m-1 p-2"
+    >
       <div className="w-full lg:h-80 sm:h-28 flex justify-center overflow-hidden overflow-clip">
-        <img className="h-full" src={`/assets/${item.image[0]}`} alt={item.name} />
+        <img
+          className="h-full"
+          src={`/assets/${item.image[0]}`}
+          alt={item.name}
+        />
       </div>
 
       <div className="flex items-center">
@@ -36,7 +45,7 @@ function Card({ item, url }) {
           Add to bag
         </button>
       </div>
-    </div>
+    </Link>
   );
 }
 

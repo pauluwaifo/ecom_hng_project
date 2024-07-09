@@ -7,6 +7,7 @@ import Footer from "./components/footer/Footer";
 import CartContext from "./context/CartContext";
 import Alert from "./components/utility/Alert";
 import CheckoutMobile from "./pages/CheckoutMobile";
+import ProductDetails from "./pages/ProductDetails";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/cart" element={<Cart />} />
         <Route path="/checkout" element={<CheckoutMobile />} />
+        <Route path="/product/:id" element={<ProductDetails />} />
       </Routes>
       <Footer />
     </CartContext>

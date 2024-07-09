@@ -4,17 +4,25 @@ import { IoIosArrowDown } from "react-icons/io";
 import AppContext from "../context/AppContext";
 
 function CheckoutMobile() {
+  const [payment, setPayment] = useState(false);
   const { cart, dispatch, setAlert, setMessage, setAlert_bg } =
     useContext(AppContext);
 
   const PaymentPage = () => {
     return (
-      <div className="top-0 left-0 w-full h-full bg-white/90 backdrop-blur-sm p-5 justify-center sm:block lg:hidden fixed z-10 flex flex-col">
+      <div
+        className={`${
+          payment ? "block" : "hidden"
+        } top-0 left-0 w-full h-full bg-white/90 backdrop-blur-sm p-5 justify-center lg:hidden fixed z-10 flex flex-col`}
+      >
         <div className="flex flex-row justify-between items-center mt-16">
           <p className="text-xl font-bold">ADD NEW CARD</p>
-          <p className="text-white bg-gray-500 inline-block px-[10px] py-[2px] rounded-full">
+          <button
+            onClick={() => setPayment(false)}
+            className="text-white bg-gray-500 inline-block px-[10px] py-[2px] rounded-full"
+          >
             x
-          </p>
+          </button>
         </div>
         {/* card name */}
         <div className="mt-5">
@@ -64,11 +72,11 @@ function CheckoutMobile() {
           </div>
         </div>
         {/* make payment button */}
-      <div className="lg:hidden sm:basis-full px-5 mt-40">
-        <button className="w-full text-white text-semibold rounded-xl bg-[#49a2f5] p-3">
-          Save and Proceed
-        </button>
-      </div>
+        <div className="lg:hidden sm:basis-full px-5 mt-40">
+          <button className="w-full text-white text-semibold rounded-xl bg-[#49a2f5] p-3">
+            Save and Proceed
+          </button>
+        </div>
       </div>
     );
   };
@@ -272,7 +280,10 @@ function CheckoutMobile() {
 
       {/* make payment button */}
       <div className="lg:hidden sm:basis-full px-10 mt-5">
-        <button className="w-full text-white text-semibold rounded-xl bg-[#49a2f5] p-3">
+        <button
+          onClick={() => setPayment(true)}
+          className="w-full text-white text-semibold rounded-xl bg-[#49a2f5] p-3"
+        >
           Make payment
         </button>
       </div>

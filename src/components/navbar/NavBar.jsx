@@ -10,7 +10,7 @@ function NavBar() {
   const location = useLocation();
 
   useEffect(() => {
-    if (location.pathname == "/cart") {
+    if (location.pathname == "/cart" || location.pathname == "/checkout") {
       setPath(true);
     } else {
       setPath(false);
