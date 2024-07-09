@@ -4,7 +4,7 @@ import AppContext from "../../context/AppContext";
 function Alert() {
   const { setAlert, alert, message, alert_bg } = useContext(AppContext);
   return (
-    <div className=" z-50 fixed top-28 left-0 flex flex-row items-center w-full px-20 py-5">
+    <div className=" z-50 fixed sm:top-2 lg:top-28 left-0 flex flex-row items-center w-full sm:px-2 lg:px-20 py-5">
       <div
         className={`${
           alert ? "block" : "hidden"

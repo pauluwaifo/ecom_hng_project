@@ -11,8 +11,9 @@ function CartNav() {
   const [itemsInCart, setItemsInCart] = useState();
 
   const navClass = window.location.pathname.includes("/product/")
-    ? "lg:bg-[#1e1e1e] lg:text-white  sm:hidden lg:flex"
+    ? "lg:bg-[#1e1e1e] lg:text-white sm:hidden lg:flex"
     : "lg:text-black lg:bg-white lg:flex";
+
 
   useEffect(() => {
     const totalQty =
@@ -32,7 +33,7 @@ function CartNav() {
   return (
     <div>
       {window.location.pathname !== "/cart" ? (
-        <div className="bg-white p-2 text-bold text-black text-2xl">
+        <div className="bg-white p-2 text-bold text-black text-2xl sm:hidden lg:block">
           <Link to={"/"}>
             <IoIosArrowDropleft />
           </Link>

@@ -268,12 +268,12 @@ function CheckoutMobile() {
           </div>
           <div className="flex flex-row justify-between">
             <p>Deliver charges</p>
-            <p className="text-blue-500">$100</p>
+            <p className="text-blue-500">${cart.length > 0 ? "100" : "0"}</p>
           </div>
           <div className="border-t-2 mt-2"></div>
           <div className="flex flex-row justify-between">
             <p className="font-semibold">Total Amount</p>
-            <p className="text-red-500 font-semibold">$100</p>
+            <p className="text-red-500 font-semibold">${cart.length > 0 ? totalPrice + 100 : "0"}</p>
           </div>
         </div>
       </div>
