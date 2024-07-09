@@ -13,7 +13,7 @@ function CheckoutMobile() {
       <div
         className={`${
           payment ? "block" : "hidden"
-        } top-0 left-0 w-full h-full bg-white/90 backdrop-blur-sm p-5 justify-center lg:hidden fixed z-10 flex flex-col`}
+        } top-0 left-0 w-full h-full bg-white/90 backdrop-blur-sm p-5 justify-center lg:hidden fixed z-10 flex flex-col mt-20`}
       >
         <div className="flex flex-row justify-between items-center mt-16">
           <p className="text-xl font-bold">ADD NEW CARD</p>
@@ -45,7 +45,7 @@ function CheckoutMobile() {
             <input
               className="bg-transparent"
               type="text"
-              placeholder="Card name"
+              placeholder="Card number"
             />
             <p className="text-white bg-gray-500 inline-block px-[10px] py-[2px] rounded-full">
               x
@@ -72,7 +72,7 @@ function CheckoutMobile() {
           </div>
         </div>
         {/* make payment button */}
-        <div className="lg:hidden sm:basis-full px-5 mt-40">
+        <div className="lg:hidden sm:basis-full px-5 mt-32">
           <button className="w-full text-white text-semibold rounded-xl bg-[#49a2f5] p-3">
             Save and Proceed
           </button>
@@ -106,7 +106,7 @@ function CheckoutMobile() {
     cart && cart.reduce((accumulator, item) => accumulator + item.price, 0);
 
   return (
-    <div className="flex flex-row flex-wrap mt-28 lg:p-10 sm:pb-28">
+    <div className={`${payment && "overflow-hidden h-[500px]"} flex flex-row flex-wrap mt-28 lg:p-10 sm:pb-28`} >
       <PaymentPage />
       {/* cart items */}
       <div className="flex flex-col flex-wrap lg:basis-3/4 sm:basis-full p-2">

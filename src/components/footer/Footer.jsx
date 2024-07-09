@@ -135,6 +135,7 @@ function Footer() {
 
       {/* mobile footer */}
       <div className="lg:hidden sm:flex flex-row justify-around bg-white bottom-0 left-0 w-full min-h-24 rounded-t-xl shadow-md border fixed  items-center ">
+        {/* home */}
         <Link
           className="flex flex-col items-center text-sm text-gray-400"
           to={"/"}
@@ -142,6 +143,16 @@ function Footer() {
           <GrHomeRounded className="text-xl stroke-gray-400" />
           Home
         </Link>
+
+        {/* payment */}
+        <Link
+          className="flex flex-col items-center text-sm text-[#4541a2]"
+          to={"/checkout"}
+        >
+          <FaCreditCard className="text-xl fill-[#4541a2]" />
+          Payment
+        </Link>
+        {/* cart */}
         <Link
           className="flex flex-col items-center text-sm text-[#4541a2]"
           to={"/cart"}
@@ -154,14 +165,7 @@ function Footer() {
             Cart {itemsInCart ? itemsInCart : "0"}
           </div>
         </Link>
-        <Link
-          className="flex flex-col items-center text-sm text-[#4541a2]"
-          to={"/checkout"}
-        >
-          <FaCreditCard className="text-xl fill-[#4541a2]" />
-          Payment
-        </Link>
-
+        {/* settings */}
         <Link className="flex flex-col items-center text-sm text-gray-400">
           <IoSettingsOutline className="text-xl stroke-gray-400" />
           Settings

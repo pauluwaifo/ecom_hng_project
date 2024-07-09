@@ -39,7 +39,7 @@ function ProductDetails() {
           <div key={item.id} className="flex flex-row flex-wrap pb-28 p-5">
             <div className="sm:full flex lg:basis-2/5 lg:border lg:h-[520px] overflow-hidden sm:items-center sm: justify-center">
               <img
-                className="lg:w-full sm:w-3/4"
+                className="lg:w-3/4 sm:w-3/4"
                 src={`/assets/${item.image[0]}`}
                 alt={item.name}
               />
@@ -199,7 +199,7 @@ function ProductDetails() {
                   </button>
                 </div>
                 <button
-                  onClick={() => addToCart(item)}
+                  onClick={() => addToCart(ite)}
                   className="bg-[#49a2f5] text-white rounded-xl px-10 py-4"
                 >
                   Add to bag
