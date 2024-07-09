@@ -9,7 +9,7 @@ function Bannar() {
         backgroundPosition: "center center",
         backgroundSize: "cover",
       }}
-      className={`flex w-full sm:justify-start sm:items-center lg:justify-start lg:text-left border mt-24 sm:p-5 lg:py-24 lg:px-16 flex-row lg:h-[580px] sm:h-[200px] text-white sm:rounded-2xl lg:rounded-none`}
+      className={`flex w-full sm:justify-start sm:items-center lg:justify-start lg:text-left border lg:mt-24 sm:mt-32 sm:p-5 lg:py-24 lg:px-16 flex-row lg:h-[580px] sm:h-[200px] text-white sm:rounded-2xl lg:rounded-none`}
     >
       <div className="sm:basis-3/4 lg:basis-3/5 wrap">
         <p className="sm:text-[.6rem] lg:text-xl">
