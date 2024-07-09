@@ -26,7 +26,7 @@ function Cart() {
   const handleSubQty = (item) => {
     dispatch({
       type: "UPDATE_ITEM_QTY",
-      payload: { id: item.id, qty: Number(item.qty) - 1 },
+      payload: { id: item.id, qty: item.qty <= 1 ? 1 : Number(item.qty) - 1 },
     });
   };
 

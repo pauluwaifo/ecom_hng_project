@@ -9,8 +9,29 @@ import {
 } from "react-icons/fa";
 import { GrHomeRounded } from "react-icons/gr";
 import { IoSettingsOutline } from "react-icons/io5";
+import { useEffect, useState, useContext } from "react";
+import AppContext from "../../context/AppContext";
 
 function Footer() {
+  const { cart } = useContext(AppContext);
+  const [scaleNo, setScaleNo] = useState(1);
+  const [itemsInCart, setItemsInCart] = useState();
+
+  useEffect(() => {
+    const totalQty =
+      cart && cart.reduce((accumulator, item) => accumulator + item.qty, 0);
+    setItemsInCart(totalQty);
+  }, [cart]);
+
+  useEffect(() => {
+    setScaleNo(1.2);
+    const timer = setTimeout(() => {
+      setScaleNo(1);
+    }, 200);
+
+    return () => clearTimeout(timer);
+  }, [itemsInCart]);
+
   return (
     <>
       <div className="sm:hidden lg:flex flex-col flex-wrap text-white">
@@ -114,15 +135,29 @@ function Footer() {
 
       {/* mobile footer */}
       <div className="lg:hidden sm:flex flex-row justify-around bg-white bottom-0 left-0 w-full min-h-24 rounded-t-xl shadow-md border fixed  items-center ">
-        <Link className="flex flex-col items-center text-sm text-gray-400" to={"/"}>
+        <Link
+          className="flex flex-col items-center text-sm text-gray-400"
+          to={"/"}
+        >
           <GrHomeRounded className="text-xl stroke-gray-400" />
           Home
         </Link>
-        <Link className="flex flex-col items-center text-sm text-[#4541a2]" to={"/cart"}>
+        <Link
+          className="flex flex-col items-center text-sm text-[#4541a2]"
+          to={"/cart"}
+        >
           <FaShoppingBag className="text-xl fill-[#4541a2]" />
-          Cart
+          <div
+            style={{ transform: `scale(${scaleNo})` }}
+            className="text-sm px-1 mx-1"
+          >
+            Cart {itemsInCart ? itemsInCart : "0"}
+          </div>
         </Link>
-        <Link className="flex flex-col items-center text-sm text-[#4541a2]" to={"/checkout"}>
+        <Link
+          className="flex flex-col items-center text-sm text-[#4541a2]"
+          to={"/checkout"}
+        >
           <FaCreditCard className="text-xl fill-[#4541a2]" />
           Payment
         </Link>

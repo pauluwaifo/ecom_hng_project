@@ -16,7 +16,7 @@ function Card({ item }) {
   };
 
   return (
-    <div className="sm:basis-[45%] lg:basis-[32.5%] border-2 m-1 p-2">
+    <div className="sm:basis-[45%] lg:basis-[32.5%] border-2 m-1 p-2 relative">
       <Link to={`/product/${item.id}`}>
         <div className="w-full lg:h-80 sm:h-28 flex justify-center overflow-hidden overflow-clip">
           <img
@@ -33,13 +33,13 @@ function Card({ item }) {
           <IoStar className="text-[#f7cb38]" />
           <IoStarHalf className="text-[#f7cb38] " />
         </div>
-        <p className="text-ellipsis overflow-hidden">{item.name}</p>
+        <p className="text-ellipsis overflow-hidden sm:text-sm lg:text-lg">{item.name}</p>
       </Link>
-      <div className="flex sm:flex-col lg:flex-row justify-between mt-2 items-center">
-        <p className="font-bold lg:text-xl ">${item.price.toFixed(2)}</p>
+      <div className="flex sm:flex-row lg:flex-row justify-between mt-2 items-center ">
+        <p className="font-bold sm:text-sm lg:text-xl ">${item.price.toFixed(2)}</p>
         <button
           onClick={() => addToCart(item)}
-          className="text-sm px-2 py-1 h-full bg-[#d9d9d9] font-bold"
+          className="text-sm lg:px-2 sm:px-[2px] py-1 h-full bg-[#d9d9d9] font-bold"
         >
           Add to bag
         </button>

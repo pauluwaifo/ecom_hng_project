@@ -11,8 +11,8 @@ function CartNav() {
   const [itemsInCart, setItemsInCart] = useState();
 
   const navClass = window.location.pathname.includes("/product/")
-    ? "lg:bg-[#1e1e1e] lg:text-white"
-    : "lg:text-black lg:bg-white";
+    ? "lg:bg-[#1e1e1e] lg:text-white  sm:hidden lg:flex"
+    : "lg:text-black lg:bg-white lg:flex";
 
   useEffect(() => {
     const totalQty =

@@ -22,7 +22,7 @@ function NavBar() {
   }, [location]);
 
   return (
-    <div className="w-full fixed flex flex-col top-0 left-0">
+    <div className="w-full fixed flex flex-col top-0 left-0 z-50">
       {path ? (
         <CartNav />
       ) : (
