@@ -199,7 +199,7 @@ function ProductDetails() {
                   </button>
                 </div>
                 <button
-                  onClick={() => addToCart(ite)}
+                  onClick={() => addToCart(item)}
                   className="bg-[#49a2f5] text-white rounded-xl px-10 py-4"
                 >
                   Add to bag
