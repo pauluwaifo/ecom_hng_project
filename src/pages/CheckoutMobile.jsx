@@ -9,6 +9,8 @@ function CheckoutMobile() {
   const { cart, dispatch, setAlert, setMessage, setAlert_bg } =
     useContext(AppContext);
   const [total, setTotal] = useState();
+  const [display, setDisplay] = useState(false);
+
 
   useEffect(() => {
     const prices = cart.map((item) => item.qty * item.current_price);
@@ -21,9 +23,22 @@ function CheckoutMobile() {
 
   const nav = useNavigate();
 
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setPayment(false)
+    setDisplay(true);
+  };
+  setTimeout(
+    () => {
+      setDisplay(false);
+    },
+    6000,
+    [display]
+  );
+
   const PaymentPage = () => {
     return (
-      <div
+      <form onSubmit={handleSubmit}
         className={`${
           payment ? "block" : "hidden"
         } top-0 left-0 w-full h-full bg-white/90 backdrop-blur-sm p-5 justify-center lg:hidden fixed z-10 flex flex-col mt-20`}
@@ -45,6 +60,7 @@ function CheckoutMobile() {
               className="bg-transparent"
               type="text"
               placeholder="Card name"
+              required
             />
             <p className="text-white bg-gray-500 inline-block px-[10px] py-[2px] rounded-full">
               x
@@ -59,6 +75,7 @@ function CheckoutMobile() {
               className="bg-transparent"
               type="text"
               placeholder="Card number"
+              required
             />
             <p className="text-white bg-gray-500 inline-block px-[10px] py-[2px] rounded-full">
               x
@@ -73,6 +90,7 @@ function CheckoutMobile() {
               className="bg-transparent border w-40 p-2 rounded-lg"
               type="text"
               placeholder="MM/YY"
+              required
             />
           </div>
           <div className="mx-2">
@@ -86,11 +104,11 @@ function CheckoutMobile() {
         </div>
         {/* make payment button */}
         <div className="lg:hidden sm:basis-full px-5 mt-32">
-          <button className="w-full text-white text-semibold rounded-xl bg-[#49a2f5] p-3">
+          <button type="submit" className="w-full text-white text-semibold rounded-xl bg-[#49a2f5] p-3">
             Save and Proceed
           </button>
         </div>
-      </div>
+      </form>
     );
   };
 
@@ -141,6 +159,20 @@ function CheckoutMobile() {
       } flex flex-row flex-wrap mt-28 lg:p-10 sm:pb-28`}
     >
       <PaymentPage />
+
+      
+      {/* display order placed */}
+      <div
+        className={` ${
+          display ? "flex" : "hidden"
+        } w-full fixed  items-center justify-center top-30 left-0`}
+      >
+        <div className="bg-green-500 z-10 shadow-xl w-full text-white rounded-xl text-center font-bold p-5">
+          ORDER PLACED
+        </div>
+      </div>
+
+
       {/* cart items */}
       <div className="flex flex-col flex-wrap lg:basis-3/4 sm:basis-full p-2">
         {/* heading */}

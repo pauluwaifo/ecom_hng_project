@@ -295,6 +295,7 @@ function Cart() {
                   id="firstname"
                   type="text"
                   autoComplete="cc-number"
+                  required
                 />
               </div>
             </div>
@@ -312,6 +313,7 @@ function Cart() {
                 id="day"
                 type="number"
                 placeholder="05"
+                required
               />
             </div>
 
@@ -324,6 +326,7 @@ function Cart() {
                 id="year"
                 type="number"
                 placeholder="2026"
+                required
               />
             </div>
 
@@ -336,6 +339,7 @@ function Cart() {
                 id="year"
                 type="number"
                 placeholder="295"
+                required
               />
             </div>
           </section>

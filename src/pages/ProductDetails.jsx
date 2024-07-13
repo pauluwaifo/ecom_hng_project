@@ -77,7 +77,7 @@ function ProductDetails() {
   };
 
   return (
-    <div className="mt-32">
+    <div className="lg:mt-32 sm:mt-0">
       {loading ? (
         <p>loading</p>
       ) : (
