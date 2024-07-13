@@ -8,8 +8,8 @@ function Cart() {
   const { cart, dispatch, setAlert, setMessage, setAlert_bg } =
     useContext(AppContext);
   const [payMethod, setPayMethod] = useState(1);
+  const [display, setDisplay] = useState(false);
   const [total, setTotal] = useState();
-
 
   const handleDelete = (item) => {
     dispatch({ type: "DELETE_CART_ITEM", payload: item.id });
@@ -32,9 +32,20 @@ function Cart() {
     });
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setDisplay(true);
+  };
+  setTimeout(
+    () => {
+      setDisplay(false);
+    },
+    2000,
+    [display]
+  );
 
   useEffect(() => {
-    const prices = cart.map((item) => item.qty * item.price);
+    const prices = cart.map((item) => item.qty * item.current_price);
     const totalAmount = prices.reduce(
       (accumulator, item) => accumulator + item,
       0
@@ -42,11 +53,19 @@ function Cart() {
     setTotal(totalAmount);
   }, [cart]);
 
-  const totalPrice =
-    cart && cart.reduce((accumulator, item) => accumulator + item.price, 0);
-
   return (
     <div className="flex flex-row flex-wrap  mt-28 lg:p-10 sm:pb-28">
+      {/* display order placed */}
+      <div
+        className={` ${
+          display ? "flex" : "hidden"
+        } w-full fixed  items-center justify-center px-72 top-20 left-0`}
+      >
+        <div className="bg-green-500 z-10 shadow-xl w-full text-white rounded-xl text-center font-bold p-5">
+          ORDER PLACED
+        </div>
+      </div>
+
       {/* cart items */}
       <div className="flex flex-col flex-wrap lg:basis-3/4 sm:basis-full p-2">
         {/* heading */}
@@ -83,7 +102,7 @@ function Cart() {
                       {/* image */}
                       <Link to={`/product/${item.id}`}>
                         <img
-                          src={`/assets/${item.image[0]}`}
+                          src={`https://api.timbu.cloud/images/${item.photos[0].url}`}
                           alt={item.name}
                           width={"100%"}
                         />
@@ -137,7 +156,7 @@ function Cart() {
 
                     {/* item price */}
                     <td className="font-bold lg:text-xl sm:px-5 lg:px-0 sm:text-sm">
-                      ${(item.price * item.qty).toFixed(2)}
+                      ${(item.current_price * item.qty).toFixed(2)}
                     </td>
                     {/* delete button */}
                     <td className=" text-xl">
@@ -176,9 +195,7 @@ function Cart() {
             </p>
             <p className="font-bold text-lg mt-5 flex ">
               Total:
-              <span className="mx-3">
-                ${total && total.toFixed(2)}
-              </span>
+              <span className="mx-3">${total && total.toFixed(2)}</span>
             </p>
           </div>
         </section>
@@ -199,7 +216,7 @@ function Cart() {
         <h2 className="font-bold text-2xl mt-5">You're almost there!</h2>
         <p className="mt-3 font-semibold">Payment method</p>
 
-        <form>
+        <form onSubmit={handleSubmit}>
           {/* radio buttons payment method credit card */}
           <section className="flex items-center mt-2">
             <input
@@ -326,10 +343,10 @@ function Cart() {
           {/* button */}
           <section className="flex items-center flex-row justify-center mt-20">
             <button
-              type="button"
+              type="submit"
               className="bg-[#e64844] text-white font-bold px-5 w-56 rounded-lg py-2"
             >
-              check out
+              Make Payment
             </button>
           </section>
         </form>

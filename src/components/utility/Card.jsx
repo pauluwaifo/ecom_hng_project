@@ -6,12 +6,11 @@ import { Link } from "react-router-dom";
 function Card({ item }) {
   const qty = 1;
   const price = item.current_price.map((priceObj) => {
-    const usdValue = parseFloat(priceObj.USD);
+    const usdValue = parseFloat(priceObj.NGN);
     return !isNaN(usdValue) ? usdValue.toFixed(2) : "Invalid Price";
   });
 
-  const image = item.photos[0].url
-
+  const image = item.photos[0].url;
 
   const { dispatch, setAlert, setMessage, setAlert_bg, loading } =
     useContext(AppContext);
@@ -33,13 +32,11 @@ function Card({ item }) {
         <div className="sm:basis-[45%] lg:basis-[32.5%] border-2 m-1 p-2 relative">
           <Link to={`/product/${item.id}`}>
             <div className="w-full lg:h-80 sm:h-28 flex justify-center overflow-hidden overflow-clip">
-              
               <img
                 className="h-full"
                 src={`https://api.timbu.cloud/images/${image}`}
                 alt={item.name}
               />
-              
             </div>
 
             <div className="flex items-center">
@@ -61,6 +58,8 @@ function Card({ item }) {
             >
               Add to bag
             </button>
+
+            
           </div>
         </div>
       )}

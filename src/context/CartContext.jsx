@@ -7,7 +7,6 @@ const initialState = {
     : [],
 };
 
-
 // Initialize the cart in localStorage if it does not exist
 if (!localStorage.getItem("cart")) {
   localStorage.setItem("cart", JSON.stringify([]));
@@ -29,7 +28,7 @@ const reducer = (state, action) => {
     case "UPDATE_ITEM_QTY":
       const updatedQty = state.cart.map((item) =>
         item.id == action.payload.id
-          ? { ...item, qty: action.payload.qty }
+          ? { ...item, qty: Number(action.payload.qty) }
           : item
       );
       localStorage.setItem("cart", JSON.stringify(updatedQty));
@@ -55,11 +54,11 @@ function CartContext({ children }) {
   const [products, setProducts] = useState();
   const [loading, setLoading] = useState(true);
 
-  const org = import.meta.env.VITE_REACT_APP_ORGANIZATION_ID
-  const appid = import.meta.env.VITE_REACT_APP_APP_ID
-  const apikey = import.meta.env.VITE_REACT_APP_API_KEY
+  const org = import.meta.env.VITE_REACT_APP_ORGANIZATION_ID;
+  const appid = import.meta.env.VITE_REACT_APP_APP_ID;
+  const apikey = import.meta.env.VITE_REACT_APP_API_KEY;
 
-  const apiBaseURL = '/api'; // Base URL for the API proxy
+  const apiBaseURL = "/api"; // Base URL for the API proxy
   const endpoint = "/products";
   const queryParams = new URLSearchParams({
     organization_id: org,
@@ -77,21 +76,23 @@ function CartContext({ children }) {
       credentials: "include", // Ensures cookies are included in the request
       withCredentials: true, // Some libraries use this, but it might not be necessary for Fetch API
     })
-      .then(response => {
+      .then((response) => {
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         return response.json(); // Parse response as JSON
       })
-      .then(data => {
+      .then((data) => {
         setProducts(data.items); // Assuming 'items' is the array of products in the API response
         setLoading(false); // Update loading state
-        console.log(data); // Log the retrieved data
+        console.log(data.items)
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error fetching data:", error); // Handle fetch errors
       });
   }, []);
+
+  
 
   // set alert to false
   setTimeout(

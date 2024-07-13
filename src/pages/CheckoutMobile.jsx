@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { IoStar, IoStarHalf } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 import AppContext from "../context/AppContext";
-import { useNavigation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function CheckoutMobile() {
   const [payment, setPayment] = useState(false);
@@ -11,18 +11,15 @@ function CheckoutMobile() {
   const [total, setTotal] = useState();
 
   useEffect(() => {
-    const prices = cart.map((item) => item.qty * item.price);
+    const prices = cart.map((item) => item.qty * item.current_price);
     const totalAmount = prices.reduce(
       (accumulator, item) => accumulator + item,
       0
     );
     setTotal(totalAmount);
-  }, [cart]); 
+  }, [cart]);
 
-  // if (window.screen.width > 768) {
-  //   nav("/cart");
-  //   console.log(window.screen.width)
-  // }
+  const nav = useNavigate();
 
   const PaymentPage = () => {
     return (
@@ -119,7 +116,23 @@ function CheckoutMobile() {
   };
 
   const totalPrice =
-    cart && cart.reduce((accumulator, item) => accumulator + item.price, 0);
+    cart &&
+    cart.reduce((accumulator, item) => accumulator + item.current_price, 0);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth > 768) {
+        nav("/cart");
+        console.log("Browser window width:", window.innerWidth);
+      }
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   return (
     <div
@@ -162,7 +175,7 @@ function CheckoutMobile() {
                     <td className="w-36">
                       {/* image */}
                       <img
-                        src={`/assets/${item.image[0]}`}
+                        src={`https://api.timbu.cloud/images/${item.photos[0].url}`}
                         alt={item.name}
                         width={"100%"}
                       />
@@ -215,7 +228,7 @@ function CheckoutMobile() {
 
                     {/* item price */}
                     <td className="font-bold lg:text-xl sm:px-5 lg:px-0 sm:text-sm">
-                      ${(item.price * item.qty).toFixed(2)}
+                      ${(item.current_price * item.qty).toFixed(2)}
                     </td>
                     {/* delete button */}
                     <td className=" text-xl">
