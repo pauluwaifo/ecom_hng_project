@@ -86,7 +86,7 @@ function ProductDetails() {
 
             <div className="lg:border lg:max-w-[400px] lg:h-[420px] overflow-hidden flex flex-row items-center justify-center">
               <img
-                className="lg:w-auto h-full sm:w-3/4"
+                className="lg:w-auto lg:h-full h-1/2 sm:w-auto"
                 src={`https://api.timbu.cloud/images/${item.photos[im_g].url}`}
                 alt={item.name}
               />
@@ -244,6 +244,7 @@ function ProductDetails() {
             <>
               <p className="mt-5 font-semibold ">Description</p>
               <p className="text-sm mt-2">{item.description}</p>
+              <p className="mt-2">Price <b className="mx-2 text-xl">${item.current_price.toFixed(2)}</b></p>
             </>
 
             {/* button qty and add to cart*/}
