@@ -59,8 +59,6 @@ function CartContext({ children }) {
   const appid = import.meta.env.VITE_REACT_APP_APP_ID
   const apikey = import.meta.env.VITE_REACT_APP_API_KEY
 
-  
-
   const apiBaseURL = '/api'; // Base URL for the API proxy
   const endpoint = "/products";
   const queryParams = new URLSearchParams({
@@ -73,17 +71,26 @@ function CartContext({ children }) {
 
   const fullURL = `${apiBaseURL}${endpoint}?${queryParams}`;
 
-
   useEffect(() => {
-  
     fetch(fullURL, {
       method: "GET",
       credentials: "include", // Ensures cookies are included in the request
       withCredentials: true, // Some libraries use this, but it might not be necessary for Fetch API
     })
-      .then((response) => response.json())
-      .then((data) => {setProducts(data.items), setLoading(false), console.log(data)})
-      .catch((error) => console.error("Error:", error));
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json(); // Parse response as JSON
+      })
+      .then(data => {
+        setProducts(data.items); // Assuming 'items' is the array of products in the API response
+        setLoading(false); // Update loading state
+        console.log(data); // Log the retrieved data
+      })
+      .catch(error => {
+        console.error("Error fetching data:", error); // Handle fetch errors
+      });
   }, []);
 
   // set alert to false
