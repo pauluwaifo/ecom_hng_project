@@ -10,7 +10,7 @@ function Card({ item }) {
     return !isNaN(usdValue) ? usdValue.toFixed(2) : "Invalid Price";
   });
 
-  const image = item.photos[0].url;
+  const image = item && item.photos[0].url;
 
   const { dispatch, setAlert, setMessage, setAlert_bg, loading } =
     useContext(AppContext);
