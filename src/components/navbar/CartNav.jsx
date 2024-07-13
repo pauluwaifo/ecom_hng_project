@@ -14,11 +14,11 @@ function CartNav() {
     ? "lg:bg-[#1e1e1e] lg:text-white sm:hidden lg:flex"
     : "lg:text-black lg:bg-white lg:flex";
 
-
   useEffect(() => {
     const totalQty =
       cart && cart.reduce((accumulator, item) => accumulator + item.qty, 0);
     setItemsInCart(totalQty);
+  
   }, [cart]);
 
   useEffect(() => {

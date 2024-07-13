@@ -2,11 +2,27 @@ import { useContext, useEffect, useState } from "react";
 import { IoStar, IoStarHalf } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
 import AppContext from "../context/AppContext";
+import { useNavigation } from "react-router-dom";
 
 function CheckoutMobile() {
   const [payment, setPayment] = useState(false);
   const { cart, dispatch, setAlert, setMessage, setAlert_bg } =
     useContext(AppContext);
+  const [total, setTotal] = useState();
+
+  useEffect(() => {
+    const prices = cart.map((item) => item.qty * item.price);
+    const totalAmount = prices.reduce(
+      (accumulator, item) => accumulator + item,
+      0
+    );
+    setTotal(totalAmount);
+  }, [cart]); 
+
+  // if (window.screen.width > 768) {
+  //   nav("/cart");
+  //   console.log(window.screen.width)
+  // }
 
   const PaymentPage = () => {
     return (
@@ -106,7 +122,11 @@ function CheckoutMobile() {
     cart && cart.reduce((accumulator, item) => accumulator + item.price, 0);
 
   return (
-    <div className={`${payment && "overflow-hidden h-[500px]"} flex flex-row flex-wrap mt-28 lg:p-10 sm:pb-28`} >
+    <div
+      className={`${
+        payment && "overflow-hidden h-[500px]"
+      } flex flex-row flex-wrap mt-28 lg:p-10 sm:pb-28`}
+    >
       <PaymentPage />
       {/* cart items */}
       <div className="flex flex-col flex-wrap lg:basis-3/4 sm:basis-full p-2">
@@ -260,20 +280,22 @@ function CheckoutMobile() {
 
           <div className="flex flex-row justify-between">
             <p>Order amount</p>
-            <p className="text-blue-500">${totalPrice}</p>
+            <p className="text-blue-500">${total}</p>
           </div>
           <div className="flex flex-row justify-between">
             <p>Sub - total</p>
-            <p className="text-blue-500">${totalPrice}</p>
+            <p className="text-blue-500">${total}</p>
           </div>
           <div className="flex flex-row justify-between">
             <p>Deliver charges</p>
-            <p className="text-blue-500">${cart.length > 0 ? "100" : "0"}</p>
+            <p className="text-blue-500">$0</p>
           </div>
           <div className="border-t-2 mt-2"></div>
           <div className="flex flex-row justify-between">
             <p className="font-semibold">Total Amount</p>
-            <p className="text-red-500 font-semibold">${cart.length > 0 ? totalPrice + 100 : "0"}</p>
+            <p className="text-red-500 font-semibold">
+              ${cart.length > 0 ? total : "0"}
+            </p>
           </div>
         </div>
       </div>

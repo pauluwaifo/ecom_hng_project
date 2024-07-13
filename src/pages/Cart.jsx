@@ -8,6 +8,8 @@ function Cart() {
   const { cart, dispatch, setAlert, setMessage, setAlert_bg } =
     useContext(AppContext);
   const [payMethod, setPayMethod] = useState(1);
+  const [total, setTotal] = useState();
+
 
   const handleDelete = (item) => {
     dispatch({ type: "DELETE_CART_ITEM", payload: item.id });
@@ -29,6 +31,16 @@ function Cart() {
       payload: { id: item.id, qty: item.qty <= 1 ? 1 : Number(item.qty) - 1 },
     });
   };
+
+
+  useEffect(() => {
+    const prices = cart.map((item) => item.qty * item.price);
+    const totalAmount = prices.reduce(
+      (accumulator, item) => accumulator + item,
+      0
+    );
+    setTotal(totalAmount);
+  }, [cart]);
 
   const totalPrice =
     cart && cart.reduce((accumulator, item) => accumulator + item.price, 0);
@@ -157,7 +169,7 @@ function Cart() {
           <div className="w-42 ">
             <p>
               Subtotal
-              <b className="mx-3">${totalPrice && totalPrice.toFixed(2)}</b>
+              <b className="mx-3">${total && total.toFixed(2)}</b>
             </p>
             <p>
               Shipping<b className="mx-3">Free</b>
@@ -165,7 +177,7 @@ function Cart() {
             <p className="font-bold text-lg mt-5 flex ">
               Total:
               <span className="mx-3">
-                ${totalPrice && totalPrice.toFixed(2)}
+                ${total && total.toFixed(2)}
               </span>
             </p>
           </div>
