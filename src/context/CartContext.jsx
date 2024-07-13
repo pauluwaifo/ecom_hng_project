@@ -8,6 +8,7 @@ const initialState = {
     : [],
 };
 
+
 // Initialize the cart in localStorage if it does not exist
 if (!localStorage.getItem("cart")) {
   localStorage.setItem("cart", JSON.stringify([]));
@@ -46,6 +47,7 @@ const reducer = (state, action) => {
       return state;
   }
 };
+
 function CartContext({ children }) {
   const [alert, setAlert] = useState(false);
   const [message, setMessage] = useState("");
@@ -54,24 +56,31 @@ function CartContext({ children }) {
   const [products, setProducts] = useState();
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    const fetch = async () => {
-      await axios
-        .get(
-          "/api/products?organization_id=8969b1dc6ae44595935014ca6f99653c&reverse_sort=false&page=1&Appid=6P776V6VBS6NEVA&Apikey=3b29b951ceb343359b58619708d36cd320240712131333265006",
-          { withCredentials: true, credentials: "include" }
-        )
-        .then((res) => {
-          if (res.data) {
-            setProducts(res.data.items);
-            setLoading(false)
-            console.log(res.data.items)
-          }
-        })
-        .catch((err) => console.log(err));
-    };
+  
 
-    fetch();
+  const apiBaseURL = '/api'; // Base URL for the API proxy
+  const endpoint = "/products";
+  const queryParams = new URLSearchParams({
+    organization_id: "8969b1dc6ae44595935014ca6f99653c",
+    reverse_sort: "false",
+    page: "1",
+    Appid: "6P776V6VBS6NEVA",
+    Apikey: "3b29b951ceb343359b58619708d36cd320240712131333265006",
+  }).toString();
+
+  const fullURL = `${apiBaseURL}${endpoint}?${queryParams}`;
+
+
+  useEffect(() => {
+  
+    fetch(fullURL, {
+      method: "GET",
+      credentials: "include", // Ensures cookies are included in the request
+      withCredentials: true, // Some libraries use this, but it might not be necessary for Fetch API
+    })
+      .then((response) => response.json())
+      .then((data) => {setProducts(data.items), setLoading(false), console.log(data)})
+      .catch((error) => console.error("Error:", error));
   }, []);
 
   // set alert to false
