@@ -6,6 +6,19 @@ import proxyConfig from './proxyConfig'
 export default defineConfig({
   plugins: [react()],
   server: {
-    proxy: proxyConfig,
+    proxy: {
+      '/api': {
+        target: 'https://api.timbu.cloud',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, '')
+      }
+    }
   },
-})
+  build: {
+    rollupOptions: {
+      input: {
+        main: '/index.html'
+      }
+    }
+  }
+});
