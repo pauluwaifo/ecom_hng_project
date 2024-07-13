@@ -221,7 +221,7 @@ function ProductDetails() {
             {/* name and price */}
             <div className="flex flex-row justify-between">
               <h1 className="font-semibold">{item.name}</h1>
-              {/* <p>${item.price.toFixed(2)}</p> */}
+              <p>${item.current_price.toFixed(2)}</p>
             </div>
 
             {/* review and size */}
@@ -244,7 +244,6 @@ function ProductDetails() {
             <>
               <p className="mt-5 font-semibold ">Description</p>
               <p className="text-sm mt-2">{item.description}</p>
-              <p className="mt-2">Price <b className="mx-2 text-xl">${item.current_price.toFixed(2)}</b></p>
             </>
 
             {/* button qty and add to cart*/}
