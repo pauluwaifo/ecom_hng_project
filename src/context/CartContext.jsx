@@ -1,6 +1,5 @@
 import { useState, useEffect, useReducer } from "react";
 import AppContext from "./AppContext";
-import axios from "axios";
 
 const initialState = {
   cart: localStorage.getItem("cart")
@@ -56,16 +55,20 @@ function CartContext({ children }) {
   const [products, setProducts] = useState();
   const [loading, setLoading] = useState(true);
 
+  const org = import.meta.env.VITE_REACT_APP_ORGANIZATION_ID
+  const appid = import.meta.env.VITE_REACT_APP_APP_ID
+  const apikey = import.meta.env.VITE_REACT_APP_API_KEY
+
   
 
   const apiBaseURL = '/api'; // Base URL for the API proxy
   const endpoint = "/products";
   const queryParams = new URLSearchParams({
-    organization_id: "8969b1dc6ae44595935014ca6f99653c",
+    organization_id: org,
     reverse_sort: "false",
     page: "1",
-    Appid: "6P776V6VBS6NEVA",
-    Apikey: "3b29b951ceb343359b58619708d36cd320240712131333265006",
+    Appid: appid,
+    Apikey: apikey,
   }).toString();
 
   const fullURL = `${apiBaseURL}${endpoint}?${queryParams}`;
