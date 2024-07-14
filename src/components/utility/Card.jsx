@@ -16,7 +16,7 @@ function Card({ item }) {
     useContext(AppContext);
 
   const addToCart = (product) => {
-    dispatch({ type: "ADD_TO_CART", payload: { ...product, qty } });
+    dispatch({ type: "ADD_TO_CART", payload: { ...product, qty, current_price: price } });
     setAlert(true);
     setMessage("1 ITEM ADDED TO YOUR CART ");
     setAlert_bg("bg-green-500");
